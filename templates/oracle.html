@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Oracles</title>
+  </head>
+  <body>
+    <h1 id="oracle">{{ o }}</h1>
+    <p id="text">{{ text }} (<a href="{{ path }}">permalink</a>, <a href="/api/v1{{ path }}">API</a>)</p>
+    <button onclick="fetch_oracle();">
+      random
+    </button>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'oracle.js') }}"></script>
+  </body>
+</html>

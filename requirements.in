@@ -1,0 +1,5 @@
+flake8
+pip-tools
+pytest
+
+flask
