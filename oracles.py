@@ -3,7 +3,7 @@ import random
 from data import oracles
 
 # check completeness of data
-# (it would also be good to test that we can generate all possible seeds)
+# (we test that we can generate all possible seeds in test_oracles.py)
 assert all(map(lambda a: a == 6, [len(o['trends']) for o in oracles]))
 assert all(map(lambda a: a == 6, [len(o['impacts']) for o in oracles]))
 element_counts = [[len(e) for e in o['elements']] for o in oracles]
