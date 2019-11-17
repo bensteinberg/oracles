@@ -19,6 +19,13 @@ def favicon():
                                mimetype='image/vnd.microsoft.icon')
 
 
+@app.route('/css/<style>')
+def css(style):
+    return send_from_directory(os.path.join(app.root_path, 'css'),
+                               style,
+                               mimetype='text/css')
+
+
 @app.route('/')
 def hello():
     return render_template('index.html')
