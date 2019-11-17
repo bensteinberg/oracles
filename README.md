@@ -1,6 +1,7 @@
 This is an application for generating Big Pictures for Ben Robbins'
-excellent game, Microscope, using the Oracles mechanism from
-_Microscope Explorer_.
+excellent game, [Microscope](http://www.lamemage.com/microscope/),
+using the Oracles mechanism from [Microscope
+Explorer](http://www.lamemage.com/microscope-explorer/).
 
 To set up the application, install `python3-venv` if necessary, then run
 
