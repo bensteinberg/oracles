@@ -9,7 +9,6 @@ assert all(map(lambda a: a == 6, [len(o['impacts']) for o in oracles]))
 element_counts = [[len(e) for e in o['elements']] for o in oracles]
 flattened_element_counts = [y for x in element_counts for y in x]
 assert all(map(lambda a: a == 8, flattened_element_counts))
-# this could change if we added a new Oracle
 assert len(flattened_element_counts) == 6 * len(oracles)
 
 choices = [o['name'] for o in oracles]
