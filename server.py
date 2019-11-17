@@ -22,7 +22,6 @@ def favicon():
 @app.route('/')
 def hello():
     return render_template('index.html')
-    # return jsonify({'message': 'hello, world!'})
 
 
 @app.route('/api/v1')
