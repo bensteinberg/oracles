@@ -4,7 +4,8 @@ from flask import (Flask,
                    render_template,
                    redirect,
                    url_for,
-                   jsonify)
+                   jsonify,
+                   current_app)
 from oracles import Oracle, oracles
 from random import choice
 
@@ -76,14 +77,27 @@ def random_roll(o):
 
 
 def oracle_redirect(o, d):
-    return redirect(url_for('oracle.oracle_api',
-                            o=o,
-                            d1=d[0],
-                            d2=d[1],
-                            d3=d[2],
-                            d4=d[3],
-                            d5=d[4],
-                            d6=d[5]))
+    if current_app.env == 'production':
+        dest = url_for('oracle.oracle_api',
+                       o=o,
+                       d1=d[0],
+                       d2=d[1],
+                       d3=d[2],
+                       d4=d[3],
+                       d5=d[4],
+                       d6=d[5],
+                       _external=True,
+                       _scheme='https')
+    else:
+        dest = url_for('oracle.oracle_api',
+                       o=o,
+                       d1=d[0],
+                       d2=d[1],
+                       d3=d[2],
+                       d4=d[3],
+                       d5=d[4],
+                       d6=d[5])
+    return redirect(dest)
 
 
 @bp.errorhandler(ValueError)

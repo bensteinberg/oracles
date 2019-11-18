@@ -12,8 +12,8 @@ pip install -r requirements.txt
 ```
 
 Copy `data.py.sample` to `data.py`, or create your own version. You
-can then run the application with `python server.py` or
-`FLASK_ENV=development python server.py`. Visit it at
+can then run the application with `FLASK_ENV=development python
+server.py`. Visit it at
 [http://127.0.0.1:5000/](http://127.0.0.1:5000/). You can also run a
 command-line version with `python oracles.py`.
 
