@@ -1,44 +1,31 @@
 from flask import (Flask,
+                   Blueprint,
                    request,
                    render_template,
                    redirect,
                    url_for,
-                   jsonify,
-                   send_from_directory)
+                   jsonify)
 from oracles import Oracle, oracles
 from random import choice
-import os
 
-app = Flask(__name__)
-
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico',
-                               mimetype='image/vnd.microsoft.icon')
+bp = Blueprint('oracle', __name__,
+               template_folder='templates',
+               static_folder='static')
 
 
-@app.route('/css/<style>')
-def css(style):
-    return send_from_directory(os.path.join(app.root_path, 'css'),
-                               style,
-                               mimetype='text/css')
-
-
-@app.route('/')
+@bp.route('/')
 def hello():
     return render_template('index.html')
 
 
-@app.route('/api/v1')
+@bp.route('/api/v1')
 def random_all():
     o = choice([o['name'] for o in oracles])
     d = [choice(range(0, 6)) + 1 for _ in range(0, 6)]
     return oracle_redirect(o, d)
 
 
-@app.route('/api/v1/<o>')
+@bp.route('/api/v1/<o>')
 def api_random_roll(o):
     try:
         res = Oracle(o)
@@ -47,7 +34,7 @@ def api_random_roll(o):
         return jsonify({'error': str(e)}), 400
 
 
-@app.route('/api/v1/<o>/<d1>/<d2>/<d3>/<d4>/<d5>/<d6>')
+@bp.route('/api/v1/<o>/<d1>/<d2>/<d3>/<d4>/<d5>/<d6>')
 def oracle_api(o, d1, d2, d3, d4, d5, d6):
     roll = [r for r in map(int, [d1, d2, d3, d4, d5, d6])]
     try:
@@ -61,19 +48,23 @@ def oracle_api(o, d1, d2, d3, d4, d5, d6):
         return jsonify({'error': str(e)}), 400
 
 
-@app.route('/<o>/<d1>/<d2>/<d3>/<d4>/<d5>/<d6>')
+@bp.route('/<o>/<d1>/<d2>/<d3>/<d4>/<d5>/<d6>')
 def oracle(o, d1, d2, d3, d4, d5, d6):
     roll = [r for r in map(int, [d1, d2, d3, d4, d5, d6])]
     res = Oracle(o, roll)
-    path = '/%s/%s' % (o, '/'.join(map(str, roll)))
-    return render_template('oracle.html', o=o, text=res.text, path=path)
+    return render_template('oracle.html',
+                           o=o,
+                           text=res.text,
+                           # this is clunky
+                           path=request.path.replace('/oracles/',
+                                                     '/oracles/api/v1/'))
 
 
-@app.route('/<o>')
+@bp.route('/<o>')
 def random_roll(o):
     res = Oracle(o)
     d = res.dice
-    return redirect(url_for('oracle',
+    return redirect(url_for('oracle.oracle',
                             o=res.oracle,
                             d1=d[0],
                             d2=d[1],
@@ -84,7 +75,7 @@ def random_roll(o):
 
 
 def oracle_redirect(o, d):
-    return redirect(url_for('oracle_api',
+    return redirect(url_for('oracle.oracle_api',
                             o=o,
                             d1=d[0],
                             d2=d[1],
@@ -92,6 +83,10 @@ def oracle_redirect(o, d):
                             d4=d[3],
                             d5=d[4],
                             d6=d[5]))
+
+
+app = Flask(__name__)
+app.register_blueprint(bp, url_prefix='/oracles')
 
 
 if __name__ == '__main__':

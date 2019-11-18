@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8"/>
     <title>Oracles</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='skeleton.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('.static', filename='favicon.ico') }}">
   </head>
   <body onload="fetch_oracle();">
     <div class="container">
@@ -15,7 +16,7 @@
           <button onclick="fetch_oracle();">
             random
           </button>
-          <script type="text/javascript" src="{{ url_for('static', filename = 'oracle.js') }}"></script>
+          <script type="text/javascript" src="{{ url_for('.static', filename = 'oracle.js') }}"></script>
         </div>
       </div>
     </div>

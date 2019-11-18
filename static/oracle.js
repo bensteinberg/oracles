@@ -1,5 +1,5 @@
 function fetch_oracle() {
-    fetch('/api/v1')
+    fetch('/oracles/api/v1')
         .then((resp) => resp.json())
         .then(function(data) {
             document.getElementById('oracle').innerHTML = data.oracle;
