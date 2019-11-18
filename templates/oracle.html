@@ -16,9 +16,18 @@
           <button onclick="fetch_oracle();">
             random
           </button>
-          <script type="text/javascript" src="{{ url_for('.static', filename = 'oracle.js') }}"></script>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="twelve columns">
+          {% for oracle in oracles %}
+          {% set name = oracle['name'] %}
+          <button onclick="fetch_oracle('{{ name }}');">{{ name }}</button>
+          {% endfor %}
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="{{ url_for('.static', filename = 'oracle.js') }}"></script>
   </body>
 </html>
