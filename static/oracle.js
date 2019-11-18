@@ -1,10 +1,5 @@
 function fetch_oracle(o) {
-  if(typeof o === "undefined") {
-    route = '/oracles/api/v1';
-  } else {
-    route = '/oracles/api/v1/' + o;
-  }
-    fetch(route)
+    fetch(typeof o === 'undefined' ? '/oracles/api/v1' : '/oracles/api/v1/' + o)
         .then((resp) => resp.json())
         .then(function(data) {
             document.getElementById('oracle').innerHTML = data.oracle;
