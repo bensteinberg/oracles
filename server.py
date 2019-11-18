@@ -86,6 +86,14 @@ def oracle_redirect(o, d):
                             d6=d[5]))
 
 
+@bp.errorhandler(ValueError)
+def handle_invalid_usage(error):
+    # response = jsonify(error.to_dict())
+    # response.status_code = error.status_code
+    # return response
+    return render_template('error.html', error=error)
+
+
 app = Flask(__name__)
 app.register_blueprint(bp, url_prefix='/oracles')
 
