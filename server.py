@@ -102,9 +102,6 @@ def oracle_redirect(o, d):
 
 @bp.errorhandler(ValueError)
 def handle_invalid_usage(error):
-    # response = jsonify(error.to_dict())
-    # response.status_code = error.status_code
-    # return response
     return render_template('error.html', error=error)
 
 
