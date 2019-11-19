@@ -14,8 +14,15 @@ pip install -r requirements.txt
 Copy `data.py.sample` to `data.py`, or create your own version. You
 can then run the application with `FLASK_ENV=development python
 server.py`. Visit it at
-[http://127.0.0.1:5000/](http://127.0.0.1:5000/). You can also run a
-command-line version with `python oracles.py`.
+[http://127.0.0.1:5000/oracles](http://127.0.0.1:5000/oracles), which
+will redirect you to a random roll of six six-sided dice for a random
+oracle. Adding an oracle (or substring) to the base URL, e.g.
+[http://127.0.0.1:5000/oracles/angst](http://127.0.0.1:5000/oracles/angst),
+will redirect you to a random roll for that oracle. The underlying API
+behaves the same way, and can be viewed at
+[http://127.0.0.1:5000/oracles/api/v1](http://127.0.0.1:5000/oracles/api/v1).
+
+You can also run a command-line generator with `python oracles.py`.
 
 If you're hacking on this code, you can run the tests with `pytest`;
 use `flake8 --exclude=env/` to keep it clean. If you add Python
