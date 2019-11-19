@@ -21,23 +21,23 @@ def random_oracle():
 
 
 @bp.route('/api/v1')
-def random_all():
+def api_random_oracle():
     o = choice([o['name'] for o in oracles])
     d = [choice(range(0, 6)) + 1 for _ in range(0, 6)]
-    return oracle_redirect(o, d)
+    return api_redirect(o, d)
 
 
 @bp.route('/api/v1/<o>')
 def api_random_roll(o):
     try:
         res = Oracle(o)
-        return oracle_redirect(o, res.dice)
+        return api_redirect(o, res.dice)
     except ValueError as e:
         return jsonify({'error': str(e)}), 400
 
 
 @bp.route('/api/v1/<o>/<d1>/<d2>/<d3>/<d4>/<d5>/<d6>')
-def oracle_api(o, d1, d2, d3, d4, d5, d6):
+def api(o, d1, d2, d3, d4, d5, d6):
     roll = [r for r in map(int, [d1, d2, d3, d4, d5, d6])]
     try:
         res = Oracle(o, roll)
@@ -77,9 +77,9 @@ def random_roll(o):
                             d6=d[5]))
 
 
-def oracle_redirect(o, d):
+def api_redirect(o, d):
     if current_app.env == 'production':
-        dest = url_for('oracle.oracle_api',
+        dest = url_for('oracle.api',
                        o=o,
                        d1=d[0],
                        d2=d[1],
@@ -90,7 +90,7 @@ def oracle_redirect(o, d):
                        _external=True,
                        _scheme='https')
     else:
-        dest = url_for('oracle.oracle_api',
+        dest = url_for('oracle.api',
                        o=o,
                        d1=d[0],
                        d2=d[1],
