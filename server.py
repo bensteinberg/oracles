@@ -15,8 +15,9 @@ bp = Blueprint('oracle', __name__,
 
 
 @bp.route('/')
-def hello():
-    return render_template('index.html')
+def random_oracle():
+    o = choice([o['name'] for o in oracles])
+    return redirect(url_for('oracle.random_roll', o=o))
 
 
 @bp.route('/api/v1')
