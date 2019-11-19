@@ -45,7 +45,7 @@ def oracle_api(o, d1, d2, d3, d4, d5, d6):
                         'text': res.text,
                         'dice': res.dice,
                         'api_uri': request.url,
-                        'path': request.path})
+                        'path': request.path.replace('/api/v1', '')})
     except ValueError as e:
         return jsonify({'error': str(e)}), 400
 
