@@ -34,3 +34,15 @@ def test_api(client):
     rv = client.get('/oracles/api/v1/angst/1/1/1/1/1/1')
     assert rv.status_code == 200
     assert json.loads(rv.data)['text'] == text
+
+
+def test_api_random_roll(client):
+    rv = client.get('/oracles/api/v1/angst', follow_redirects=True)
+    assert rv.status_code == 200
+    assert 'text' in json.loads(rv.data)
+
+
+def test_api_random_oracle(client):
+    rv = client.get('/oracles/api/v1', follow_redirects=True)
+    assert rv.status_code == 200
+    assert 'text' in json.loads(rv.data)
