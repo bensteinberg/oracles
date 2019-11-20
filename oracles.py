@@ -91,7 +91,15 @@ class Oracle:
               is_flag=True,
               help='show oracle structure')
 def main(oracle, dice, verbose):
-    """ This is the command-line program. """
+
+    """This is a program for generating Big Pictures for Ben Robbins'
+    excellent game, Microscope, using the Oracles mechanism from
+    Microscope Explorer.
+
+    See http://www.lamemage.com/microscope/ for more.
+
+    """
+
     if not oracle:
         oracle = random.choice(choices)
 

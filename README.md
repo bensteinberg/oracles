@@ -25,7 +25,7 @@ behaves the same way, and can be viewed at
 [http://127.0.0.1:5000/oracles/api/v1](http://127.0.0.1:5000/oracles/api/v1).
 
 You can also run a big picture generator on the command line with
-`python oracles.py`.
+`python oracles.py`. Try `python oracles.py --help` for options.
 
 If you're hacking on this code, you can run the tests with `pytest`;
 use `flake8 --exclude=env/` to keep it clean. If you add Python
