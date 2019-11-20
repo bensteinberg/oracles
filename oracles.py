@@ -1,4 +1,4 @@
-import argparse
+import click
 import random
 from data import oracles
 
@@ -14,42 +14,34 @@ assert len(flattened_element_counts) == 6 * len(oracles)
 choices = [o['name'] for o in oracles]
 
 
-class OracleAction(argparse.Action):
-    def __init__(self, option_strings, dest, nargs=None, **kwargs):
-        super(OracleAction, self).__init__(option_strings, dest, **kwargs)
+def validate_oracle(value):
+    found = [value in choice for choice in choices]
+    if sum(found) == 1:
+        return (choices[[i for i, x in enumerate(found) if x][0]], None)
+    elif sum(found) == 0:
+        qualifier = "not a valid"
+    else:
+        qualifier = "an ambiguous"
+    return(None, qualifier)
 
-    def __call__(self, parser, namespace, values, option_string=None):
-        """
-        This is redundant with Oracle's __init__ for cleanliness of
-        error messages...
-        """
-        found = [values in choice for choice in choices]
-        if sum(found) == 1:
-            setattr(namespace,
-                    self.dest,
-                    choices[[i for i, x in enumerate(found) if x][0]])
-            return
-        elif sum(found) == 0:
-            qualifier = "not a valid"
-        else:
-            qualifier = "an ambiguous"
-        raise argparse.ArgumentError(self,
-                                     "'%s' is %s choice; "
-                                     "try one of %s (or a substring)" %
-                                     (values, qualifier, choices))
+
+def validate_oracle_option(ctx, param, value):
+    if not value:
+        return
+    (o, qualifier) = validate_oracle(value)
+    if qualifier:
+        raise click.BadParameter("'%s' is %s choice" % (value, qualifier))
+    else:
+        return o
 
 
 class Oracle:
     def __init__(self, oracle, dice=None):
-        found = [oracle in choice for choice in choices]
-        if sum(found) == 1:
-            self.oracle = choices[[i for i, x in enumerate(found) if x][0]]
-        elif sum(found) == 0:
-            qualifier = "not a valid"
-        else:
-            qualifier = "an ambiguous"
-        if sum(found) != 1:
+        (o, qualifier) = validate_oracle(oracle)
+        if qualifier:
             raise ValueError("'%s' is %s choice" % (oracle, qualifier))
+        else:
+            self.oracle = o
 
         if dice:
             if all(map(lambda a: a in range(1, 7), dice)) and len(dice) == 6:
@@ -88,29 +80,27 @@ class Oracle:
         return "<Oracle '%s' %s '%s'>" % (self.oracle, self.dice, self.text)
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('oracle',
-                        action=OracleAction,
-                        help='use one of the following, or a substring: %s' %
-                        choices)
-    parser.add_argument('-d', '--dice',
-                        nargs=6,
-                        type=int,
-                        choices=range(1, 7),
-                        help='set six coefficients, in the range 1-6')
-    parser.add_argument('-v', '--verbose',
-                        action='store_true',
-                        help='show oracle structure')
+@click.command()
+@click.option('-o', '--oracle',
+              callback=validate_oracle_option,
+              help='use one of the following, or a substring: %s' % choices)
+@click.option('-d', '--dice',
+              nargs=6, type=click.IntRange(1, 6),
+              help='roll 6d6')
+@click.option('-v', '--verbose',
+              is_flag=True,
+              help='show oracle structure')
+def main(oracle, dice, verbose):
+    """ This is the command-line program. """
+    if not oracle:
+        oracle = random.choice(choices)
 
-    args = parser.parse_args()
-
-    if args.dice:
-        o = Oracle(args.oracle, args.dice)
+    if dice:
+        o = Oracle(oracle, dice)
     else:
-        o = Oracle(args.oracle)
+        o = Oracle(oracle)
 
-    if args.verbose:
+    if verbose:
         print(repr(o))
     else:
         print(o)
