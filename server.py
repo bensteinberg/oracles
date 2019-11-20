@@ -64,6 +64,7 @@ def oracle(o, d1, d2, d3, d4, d5, d6):
     return render_template('oracle.html',
                            o=o,
                            text=res.text,
+                           reversal=res.reversal,
                            oracles=oracles,
                            # this is clunky
                            path=request.path.replace('/oracles/',
