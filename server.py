@@ -111,7 +111,7 @@ def api_redirect(o, d):
 
 @bp.errorhandler(ValueError)
 def handle_invalid_usage(error):
-    return render_template('error.html', error=error)
+    return render_template('error.html', error=error), 400
 
 
 app = Flask(__name__)
