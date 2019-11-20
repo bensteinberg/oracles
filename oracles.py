@@ -74,6 +74,13 @@ class Oracle:
                                      self.impact,
                                      self.element_b)
 
+        # we expose the reversal since it can't necessarily
+        # be produced by a transformation of the dice
+        self.reversal = "%s %s %s %s" % (self.trend,
+                                         self.element_b,
+                                         self.impact,
+                                         self.element_a)
+
     def __str__(self):
         return self.text
 

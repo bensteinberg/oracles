@@ -43,6 +43,7 @@ def api(o, d1, d2, d3, d4, d5, d6):
         res = Oracle(o, roll)
         return jsonify({'oracle': res.oracle,
                         'text': res.text,
+                        'reversal': res.reversal,
                         'dice': res.dice,
                         'trend': res.trend,
                         'impact': res.impact,
