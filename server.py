@@ -44,6 +44,12 @@ def api(o, d1, d2, d3, d4, d5, d6):
         return jsonify({'oracle': res.oracle,
                         'text': res.text,
                         'dice': res.dice,
+                        'trend': res.trend,
+                        'impact': res.impact,
+                        'elements': [
+                            res.element_a,
+                            res.element_b
+                        ],
                         'api_uri': request.url,
                         'path': request.path.replace('/api/v1', '')})
     except ValueError as e:

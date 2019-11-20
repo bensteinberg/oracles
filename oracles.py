@@ -62,14 +62,17 @@ class Oracle:
         # change dice rolls to zero-based for list indexing
         c = [n for n in map(lambda a: a - 1, self.dice)]
         i = choices.index(self.oracle)
-        results = [
-            oracles[i]['trends'][c[0]],
-            oracles[i]['elements'][c[1]][c[2]],
-            oracles[i]['impacts'][c[3]],
-            # the last roll needs an offset
-            oracles[i]['elements'][c[4]][c[5] + 2]
-        ]
-        self.text = "%s %s %s %s" % tuple([x for x in results])
+
+        self.trend = oracles[i]['trends'][c[0]]
+        self.element_a = oracles[i]['elements'][c[1]][c[2]]
+        self.impact = oracles[i]['impacts'][c[3]]
+        # the last roll needs an offset
+        self.element_b = oracles[i]['elements'][c[4]][c[5] + 2]
+
+        self.text = "%s %s %s %s" % (self.trend,
+                                     self.element_a,
+                                     self.impact,
+                                     self.element_b)
 
     def __str__(self):
         return self.text
