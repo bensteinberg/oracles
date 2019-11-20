@@ -46,3 +46,15 @@ def test_api_random_oracle(client):
     rv = client.get('/oracles/api/v1', follow_redirects=True)
     assert rv.status_code == 200
     assert 'text' in json.loads(rv.data)
+
+
+def test_api_bad_oracle(client):
+    rv = client.get('/oracles/api/v1/x', follow_redirects=True)
+    assert rv.status_code == 400
+    assert json.loads(rv.data)['error'] == "'x' is not a valid choice"
+
+
+def test_api_bad_roll(client):
+    rv = client.get('/oracles/api/v1/angst/1/1/1/1/1/7', follow_redirects=True)
+    assert rv.status_code == 400
+    assert json.loads(rv.data)['error'] == 'You must use 6d6.'
