@@ -1,6 +1,7 @@
 flake8
 pip-tools
 pytest
+pytest-cov
 
 flask
 click
