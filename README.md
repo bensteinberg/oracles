@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/bensteinberg/oracles.svg?style=svg)](https://circleci.com/gh/bensteinberg/oracles)
+
 This is an application for generating Big Pictures for Ben Robbins'
 excellent game, [Microscope](http://www.lamemage.com/microscope/),
 using the Oracles mechanism from [Microscope
