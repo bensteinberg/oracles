@@ -48,11 +48,11 @@ jobs:
           command: |
             cp data.py.sample data.py
             . venv/bin/activate
-            pytest --cov=./
+            pytest --cov=./ --cov-report xml
 
       - store_artifacts:
           path: test-reports
           destination: test-reports
 
       - codecov/upload:
-          file: {{ coverage_report_filepath }}
+          file: coverage.xml
