@@ -48,6 +48,7 @@ jobs:
           command: |
             cp data.py.sample data.py
             . venv/bin/activate
+            flake8 --exclude=env/
             pytest --cov=./ --cov-report xml
 
       - store_artifacts:
