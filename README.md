@@ -24,7 +24,8 @@ will redirect you to a random roll for that oracle. The underlying API
 behaves the same way, and can be viewed at
 [http://127.0.0.1:5000/oracles/api/v1](http://127.0.0.1:5000/oracles/api/v1).
 
-You can also run a command-line generator with `python oracles.py`.
+You can also run a big picture generator on the command line with
+`python oracles.py`.
 
 If you're hacking on this code, you can run the tests with `pytest`;
 use `flake8 --exclude=env/` to keep it clean. If you add Python
