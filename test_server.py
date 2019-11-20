@@ -1,4 +1,5 @@
 import pytest
+from flask import json
 from server import app
 
 
@@ -6,6 +7,9 @@ from server import app
 def client():
     with app.test_client() as client:
         yield client
+
+
+text = 'diminishment of faerieland kills civilization'
 
 
 def test_redirects(client):
@@ -23,4 +27,10 @@ def test_root(client):
 def test_roll(client):
     rv = client.get('/oracles/angst/1/1/1/1/1/1')
     assert rv.status_code == 200
-    assert b'diminishment of faerieland kills civilization' in rv.data
+    assert bytes(text, 'utf8') in rv.data
+
+
+def test_api(client):
+    rv = client.get('/oracles/api/v1/angst/1/1/1/1/1/1')
+    assert rv.status_code == 200
+    assert json.loads(rv.data)['text'] == text
