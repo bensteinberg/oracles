@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/bensteinberg/oracles.svg?style=svg)](https://circleci.com/gh/bensteinberg/oracles)
+[![CircleCI](https://circleci.com/gh/bensteinberg/oracles.svg?style=svg)](https://circleci.com/gh/bensteinberg/oracles) [![codecov](https://codecov.io/gh/bensteinberg/oracles/branch/master/graph/badge.svg)](https://codecov.io/gh/bensteinberg/oracles)
 
 This is an application for generating Big Pictures for Ben Robbins'
 excellent game, [Microscope](http://www.lamemage.com/microscope/),
