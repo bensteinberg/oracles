@@ -13,7 +13,7 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-Copy `data.py.sample` to `data.py`, or create your own version. You
+Copy `data_sample.py` to `data.py`, or create your own version. You
 can then run the application with `FLASK_ENV=development python
 server.py`. Visit it at
 [http://127.0.0.1:5000/oracles](http://127.0.0.1:5000/oracles), which
