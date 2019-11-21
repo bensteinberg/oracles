@@ -1,6 +1,11 @@
 env/
+
 __pycache__/
+
 data.py
 data.py.orig
+
 .coverage
 coverage.xml
+
+.hypothesis/

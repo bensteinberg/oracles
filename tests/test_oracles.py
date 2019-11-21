@@ -1,7 +1,36 @@
 from itertools import product
 from pytest import raises
+from hypothesis import given
+import hypothesis.strategies as st
 
 
+# property based tests
+# 6d6
+@given(st.lists(st.integers(1, 6), 6, 6))
+def test_oracle(roll):
+    from oracles import Oracle, oracles
+    for o in oracles:
+        bp = Oracle(o['name'], roll)
+        assert bp.oracle == o['name']
+        assert bp.text != ''
+
+
+# 6dwhatever
+@given(st.lists(st.integers(1), 6, 6))
+def test_oracle_bad_dice(roll):
+    from oracles import Oracle, oracles
+    for o in oracles:
+        if any(map(lambda a: a > 6, roll)):
+            with raises(ValueError):
+                bp = Oracle(o['name'], roll)
+        else:
+            bp = Oracle(o['name'], roll)
+            assert bp.oracle == o['name']
+            assert bp.text != ''
+
+
+# enumerate all rolls
+# 6d6
 def test_oracles():
     from oracles import Oracle, oracles
     # there are 46,656 unique rolls of six six-sided dice
@@ -21,6 +50,7 @@ def test_oracles():
     assert len(texts) == len(set(texts))
 
 
+# 6d7
 def test_bad_rolls():
     from oracles import Oracle, oracles
     # there are 117,649 unique rolls of six seven-sided dice,
