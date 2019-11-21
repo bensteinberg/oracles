@@ -1,9 +1,9 @@
-from oracles import Oracle, oracles
 from itertools import product
 from pytest import raises
 
 
 def test_oracles():
+    from oracles import Oracle, oracles
     # there are 46,656 unique rolls of six six-sided dice
     rolls = [[d for d in map(lambda a: a + 1, list(p))]
              for p in product(range(6), repeat=6)]
@@ -22,6 +22,7 @@ def test_oracles():
 
 
 def test_bad_rolls():
+    from oracles import Oracle, oracles
     # there are 117,649 unique rolls of six seven-sided dice,
     # and 70,993 of them contain at least one seven:
     # sum([7 in r for r in bad_rolls])

@@ -1,8 +1,9 @@
 from click.testing import CliRunner
-from oracles import main
 
 
 def test_cli():
+    from oracles import main
+
     text = 'diminishment of faerieland kills civilization'
     runner = CliRunner()
     result = runner.invoke(main, [])
