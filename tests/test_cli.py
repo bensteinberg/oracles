@@ -1,4 +1,34 @@
 from click.testing import CliRunner
+from hypothesis import given
+import hypothesis.strategies as st
+
+
+# 6d6
+@given(st.lists(st.integers(1, 6), 6, 6)
+       .map(lambda ns: ' '.join([n for n in map(str, ns)])))
+def test_rolls(roll):
+    from oracles import main
+
+    runner = CliRunner()
+    # specify roll but not oracle
+    result = runner.invoke(main, '-d %s' % roll)
+    assert result.exit_code == 0
+
+
+# 6dc -- this is more broken, as slashes and quotation
+# marks make for different and worse behavior
+# @given(st.lists(st.characters(), 6, 6)
+#        .map(lambda ns: ' '.join(ns)))
+# def test_weird_rolls(roll):
+#     from oracles import main
+
+#     runner = CliRunner()
+#     # specify roll but not oracle
+#     result = runner.invoke(main, '-d %s' % roll)
+#     if all(map(lambda n: 0 < int(n) < 7, roll.split(' '))):
+#         assert result.exit_code == 0
+#     else:
+#         assert result.exit_code == 2
 
 
 def test_cli():
