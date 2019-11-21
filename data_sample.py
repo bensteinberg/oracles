@@ -79,5 +79,86 @@ oracles = [
                 'fallen towers'
             ]
         ]
+    },
+    {
+        'name': 'rancor',
+        'trends': [
+            'destruction of',
+            'despising of',
+            'hatred of',
+            'criminalization of',
+            'horror of',
+            'smashing of'
+        ],
+        'impacts': [
+            'divides',
+            'depresses',
+            'petrifies',
+            'confounds',
+            'traps',
+            'buries'
+        ],
+        'elements': [
+            [
+                'the freeway',
+                'the military',
+                'the art world',
+                'communal life',
+                'religious communities',
+                'craftspeople',
+                'massed weaponry',
+                'arctic stations'
+            ],
+            [
+                'reverence',
+                'nation-states',
+                'matrilineal inheritance',
+                'despotism',
+                'theory',
+                'high technology',
+                'primitive technology',
+                'lassitude'
+            ],
+            [
+                'nepotism',
+                'the free press',
+                'novelty',
+                'beneficence',
+                'the infantry',
+                'the navy',
+                'the merchant marine',
+                'ritual theater'
+            ],
+            [
+                'circuses',
+                'idiot savants',
+                'mendacity',
+                'platitudes',
+                'stevedores',
+                'agriculture',
+                'sunsets',
+                'the seasons'
+            ],
+            [
+                'refugees',
+                'fallacy',
+                'a second moon',
+                'travel',
+                'seafaring',
+                'metalwork',
+                'transport',
+                'bioluminescence'
+            ],
+            [
+                'stasis',
+                'motility',
+                'cliff dwellings',
+                'blindness',
+                'breathable air',
+                'sleight of hand',
+                'pleasantry',
+                'ritual dance'
+            ]
+        ]
     }
 ]
