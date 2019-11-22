@@ -12,8 +12,8 @@ assert all(map(lambda a: a == 6, [len(o['trends']) for o in oracles]))
 assert all(map(lambda a: a == 6, [len(o['impacts']) for o in oracles]))
 element_counts = [[len(e) for e in o['elements']] for o in oracles]
 flattened_element_counts = [y for x in element_counts for y in x]
-assert all(map(lambda a: a == 8, flattened_element_counts))
-assert len(flattened_element_counts) == 6 * len(oracles)
+assert all(map(lambda a: a == 6, flattened_element_counts))
+assert len(flattened_element_counts) == 8 * len(oracles)
 
 choices = [o['name'] for o in oracles]
 
@@ -63,7 +63,7 @@ class Oracle:
         self.element_a = oracles[i]['elements'][c[1]][c[2]]
         self.impact = oracles[i]['impacts'][c[3]]
         # the last roll needs an offset
-        self.element_b = oracles[i]['elements'][c[4]][c[5] + 2]
+        self.element_b = oracles[i]['elements'][c[4] + 2][c[5]]
 
         self.text = "%s %s %s %s" % (self.trend,
                                      self.element_a,
