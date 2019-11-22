@@ -9,3 +9,5 @@ data.py.orig
 coverage.xml
 
 .hypothesis/
+
+oracles.egg-info/

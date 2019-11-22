@@ -116,7 +116,3 @@ def main(oracle, dice, verbose):
         print(repr(o))
     else:
         print(o)
-
-
-if __name__ == '__main__':
-    main()

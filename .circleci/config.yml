@@ -42,12 +42,16 @@ jobs:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 
-      # run tests!
       - run:
           name: run tests
           command: |
             . venv/bin/activate
+            # lint
             flake8 --exclude=venv/
+            # exercise setup.py
+            pip install --editable .
+            oracles
+            # run test suite
             pytest --cov=./ --cov-report xml
 
       - store_artifacts:
