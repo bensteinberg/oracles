@@ -50,7 +50,7 @@ jobs:
             flake8 --exclude=venv/
             # exercise setup.py
             pip install --editable .
-            oracles
+            ORACLES=data_sample oracles
             # run test suite
             pytest --cov=./ --cov-report xml
 
