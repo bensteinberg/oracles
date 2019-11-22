@@ -28,12 +28,11 @@ You can also run a big picture generator on the command line; run `pip
 install --editable .` to install the script, then run `oracles` to
 generate a Big Picture. Try `oracles --help` for options.
 
-If you're hacking on this code, you can run the tests with `pytest`;
-use `flake8 --exclude=env/` to keep it clean, or just run `pytest
---flake8`. The browser integration tests will run if you have Firefox
-and geckodriver installed. If you add Python packages, add them to
-`requirements.in` and run `pip-compile --generate-hashes` to update
-`requirements.txt`.
+If you're hacking on this code, you can run the tests with `pytest`
+(including `flake8` to keep it clean). The browser integration tests
+will run if you have Firefox and geckodriver installed. If you add
+Python packages, add them to `requirements.in` and run `pip-compile
+--generate-hashes` to update `requirements.txt`.
 
 (Lame Mage has an [online
 version](http://www.lamemage.com/oracles/) of the
