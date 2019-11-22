@@ -11,7 +11,7 @@ jobs:
     docker:
       # specify the version you desire here
       # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
-      - image: circleci/python:3.7.5
+      - image: circleci/python:3.7.5-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -50,7 +50,7 @@ jobs:
             pip install --editable .
             ORACLES=data_sample oracles
             # run test suite
-            pytest --flake8 --cov=./ --cov-report xml
+            ORACLES=data_sample pytest --flake8 --driver Firefox --live-server-port 5000 --cov=./ --cov-report xml
 
       - store_artifacts:
           path: test-reports
