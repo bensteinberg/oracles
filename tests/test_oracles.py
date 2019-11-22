@@ -4,7 +4,7 @@ from hypothesis import given
 import hypothesis.strategies as st
 
 
-# property based tests
+# property-based tests
 # 6d6
 @given(st.lists(st.integers(1, 6), 6, 6))
 def test_oracle(roll):
@@ -56,8 +56,6 @@ def test_bad_rolls():
     # there are 117,649 unique rolls of six seven-sided dice,
     # and 70,993 of them contain at least one seven:
     # sum([7 in r for r in bad_rolls])
-    #
-    # Try this with QuickCheck?
     bad_rolls = [[d for d in map(lambda a: a + 1, list(p))]
                  for p in product(range(7), repeat=6)]
     os = []
