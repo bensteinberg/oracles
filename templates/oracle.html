@@ -28,7 +28,7 @@
         <div class="twelve columns">
           {% for oracle in oracles %}
           {% set name = oracle['name'] %}
-          <button onclick="fetch_oracle('{{ name }}');">{{ name }}</button>
+          <button class="oracle" id="{{ name }}" onclick="fetch_oracle('{{ name }}');">{{ name }}</button>
           {% endfor %}
         </div>
       </div>

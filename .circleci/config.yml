@@ -50,7 +50,7 @@ jobs:
             pip install --editable .
             ORACLES=data_sample oracles
             # run test suite
-            ORACLES=data_sample pytest --flake8 --driver Firefox --live-server-port 5000 --cov=./ --cov-report xml
+            pytest --cov=./ --cov-report xml
 
       - store_artifacts:
           path: test-reports

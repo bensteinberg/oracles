@@ -1,12 +1,9 @@
 import pytest
+import subprocess
 
 
-@pytest.fixture
-def app():
-    from server import app
-    return app
-
-
+@pytest.mark.skipif(subprocess.run(['which', 'geckodriver']).returncode != 0,
+                    reason='No geckodriver')
 @pytest.mark.firefox_arguments('-headless')
 @pytest.mark.usefixtures('live_server')
 def test_example(selenium, app):
@@ -32,3 +29,10 @@ def test_example(selenium, app):
     rand.click()
     h1 = selenium.find_element_by_id('oracle')
     assert h1.text in ['angst', 'rancor']
+
+    # buttons = selenium.find_elements_by_class_name('oracle')
+    # for b in buttons:
+    #     o = b.get_attribute('id')
+    #     b.click()
+    #     h1 = selenium.find_element_by_id('oracle')
+    #     assert h1.text == o
