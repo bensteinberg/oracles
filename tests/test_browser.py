@@ -19,7 +19,6 @@ def test_example(selenium, app):
     assert p.is_displayed()
     assert text in p.text
 
-    # why does the flip button work here?
     flip = selenium.find_element_by_id('flip')
     assert flip.text == 'FLIP'
 
@@ -34,11 +33,19 @@ def test_example(selenium, app):
     assert p.is_displayed()
     assert text in p.text
 
-    # and the random button doesn't?
-    # rand = selenium.find_element_by_id('random')
-    # assert rand.is_displayed()
-    # assert rand.text == 'RANDOM'
-    # rand.click()
-    # p = selenium.find_element_by_id('text')
-    # # not a good test, but:
-    # assert text not in p.text
+    rand = selenium.find_element_by_id('random')
+    assert rand.is_displayed()
+    assert rand.text == 'RANDOM'
+    texts = []
+    for _ in range(0, 100):
+        rand.click()
+        p = selenium.find_element_by_id('text')
+        texts.append(p.text)
+    # not necessarily true, but pretty likely
+    assert not all(t == texts[0] for t in texts)
+
+    for button in selenium.find_elements_by_class_name('oracle'):
+        o = button.get_attribute('id')
+        button.click()
+        h1 = selenium.find_element_by_id('oracle')
+        assert h1.text == o
