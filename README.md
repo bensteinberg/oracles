@@ -29,9 +29,9 @@ install --editable .` to install the script, then run `oracles` to
 generate a Big Picture. Try `oracles --help` for options.
 
 If you're hacking on this code, you can run the tests with `pytest`;
-use `flake8 --exclude=env/` to keep it clean. If you add Python
-packages, add them to `requirements.in` and run `pip-compile
---generate-hashes` to update `requirements.txt`.
+use `flake8 --exclude=env/` to keep it clean, or just run `pytest
+--flake8`. If you add Python packages, add them to `requirements.in`
+and run `pip-compile --generate-hashes` to update `requirements.txt`.
 
 (Lame Mage has an [online
 version](http://www.lamemage.com/oracles/) of the

@@ -46,13 +46,11 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            # lint
-            flake8 --exclude=venv/
             # exercise setup.py
             pip install --editable .
             ORACLES=data_sample oracles
             # run test suite
-            pytest --cov=./ --cov-report xml
+            pytest --flake8 --cov=./ --cov-report xml
 
       - store_artifacts:
           path: test-reports
