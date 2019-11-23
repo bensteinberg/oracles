@@ -111,6 +111,4 @@ def handle_invalid_usage(error):
 app = Flask(__name__)
 app.register_blueprint(bp, url_prefix='/oracles')
 
-
-if __name__ == '__main__':
-    app.run()
+__name__ == '__main__' and app.run()
