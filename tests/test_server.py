@@ -1,16 +1,4 @@
-import pytest
 from flask import json
-
-
-@pytest.fixture
-def client():
-    from server import app
-    with app.test_client() as client:
-        yield client
-
-
-text = 'diminishment of faerieland kills civilization'
-invalid = 'is not a valid choice'
 
 
 def test_redirects(client):
@@ -25,19 +13,19 @@ def test_root(client):
     assert rv.status_code == 404
 
 
-def test_roll(client):
+def test_roll(client, text):
     rv = client.get('/oracles/angst/1/1/1/1/1/1')
     assert rv.status_code == 200
     assert bytes(text, 'utf8') in rv.data
 
 
-def test_bad_oracle(client):
+def test_bad_oracle(client, invalid):
     rv = client.get('/oracles/x', follow_redirects=True)
     assert rv.status_code == 400
     assert bytes(invalid, 'utf8') in rv.data
 
 
-def test_api(client):
+def test_api(client, text):
     rv = client.get('/oracles/api/v1/angst/1/1/1/1/1/1')
     assert rv.status_code == 200
     assert json.loads(rv.data)['text'] == text
@@ -55,7 +43,7 @@ def test_api_random_oracle(client):
     assert 'text' in json.loads(rv.data)
 
 
-def test_api_bad_oracle(client):
+def test_api_bad_oracle(client, invalid):
     rv = client.get('/oracles/api/v1/x', follow_redirects=True)
     assert rv.status_code == 400
     assert invalid in json.loads(rv.data)['error']

@@ -7,10 +7,7 @@ from itertools import repeat
                     reason='No geckodriver')
 @pytest.mark.firefox_arguments('-headless')
 @pytest.mark.usefixtures('live_server')
-def test_example(selenium, app):
-    text = 'diminishment of faerieland kills civilization'
-    reversal = 'diminishment of civilization kills faerieland'
-
+def test_example(selenium, app, text, reversal):
     selenium.get('http://localhost:5000/oracles/angst/1/1/1/1/1/1')
 
     h1 = selenium.find_element_by_id('oracle')

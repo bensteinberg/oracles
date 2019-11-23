@@ -31,10 +31,8 @@ def test_rolls(roll):
 #         assert result.exit_code == 2
 
 
-def test_cli():
+def test_cli(text):
     from oracles import main
-
-    text = 'diminishment of faerieland kills civilization'
 
     # no options
     runner = CliRunner()
