@@ -88,7 +88,7 @@ def random_roll(o):
 def api_redirect(o, d):
     # this (and the setting of FLASK_ENV in pytest.ini) is necessary
     # to get the application to work both locally and behind SSL,
-    # but moving to WSGI may make it unnecessry
+    # but moving to WSGI may make it unnecessary
     kd = dict(_external=True,
               _scheme='https') if current_app.env == 'production' else {}
     kwargs = {k: v for k, v in kd.items() if v is not None}
