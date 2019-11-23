@@ -86,27 +86,21 @@ def random_roll(o):
 
 
 def api_redirect(o, d):
-    if current_app.env == 'production':
-        dest = url_for('oracle.api',
-                       o=o,
-                       d1=d[0],
-                       d2=d[1],
-                       d3=d[2],
-                       d4=d[3],
-                       d5=d[4],
-                       d6=d[5],
-                       _external=True,
-                       _scheme='https')
-    else:
-        dest = url_for('oracle.api',
-                       o=o,
-                       d1=d[0],
-                       d2=d[1],
-                       d3=d[2],
-                       d4=d[3],
-                       d5=d[4],
-                       d6=d[5])
-    return redirect(dest)
+    # this (and the setting of FLASK_ENV in pytest.ini) is necessary
+    # to get the application to work both locally and behind SSL,
+    # but moving to WSGI may make it unnecessry
+    kd = dict(_external=True,
+              _scheme='https') if current_app.env == 'production' else {}
+    kwargs = {k: v for k, v in kd.items() if v is not None}
+    return redirect(url_for('oracle.api',
+                            o=o,
+                            d1=d[0],
+                            d2=d[1],
+                            d3=d[2],
+                            d4=d[3],
+                            d5=d[4],
+                            d6=d[5],
+                            **kwargs))
 
 
 @bp.errorhandler(ValueError)
