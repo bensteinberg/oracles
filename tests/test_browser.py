@@ -1,5 +1,6 @@
 import pytest
 import subprocess
+from itertools import repeat
 
 
 @pytest.mark.skipif(subprocess.run(['which', 'geckodriver']).returncode != 0,
@@ -36,11 +37,13 @@ def test_example(selenium, app):
     rand = selenium.find_element_by_id('random')
     assert rand.is_displayed()
     assert rand.text == 'RANDOM'
-    texts = []
-    for _ in range(0, 100):
-        rand.click()
-        p = selenium.find_element_by_id('text')
-        texts.append(p.text)
+
+    def random_text(tup):
+        tup[0].click()
+        p = tup[1].find_element_by_id('text')
+        return p.text
+
+    texts = [t for t in map(random_text, repeat((rand, selenium), 100))]
     # not necessarily true, but pretty likely
     assert not all(t == texts[0] for t in texts)
 
