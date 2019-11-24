@@ -30,7 +30,7 @@ generate a Big Picture. Try `oracles --help` for options.
 
 You can also run the web application using Docker; running
 `docker-compose up -d` will make it available at
-[http://127.0.0.1:8001/oracles](http://127.0.0.1:8001/oracles); run
+[http://127.0.0.1:8001/oracles](http://127.0.0.1:8001/oracles). Run
 `docker-compose down` to stop the containers.
 
 If you're hacking on this code, you can run the tests with `pytest`
