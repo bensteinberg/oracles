@@ -25,7 +25,10 @@
       </div>
       <hr />
       <div class="row">
-        <div class="twelve columns">
+        <div class="two columns">
+          <p>THE ORACLES</p>
+        </div>
+        <div class="ten columns">
           {% for oracle in oracles %}
           {% set name = oracle['name'] %}
           <button class="oracle" id="{{ name }}" onclick="fetch_oracle('{{ name }}');">{{ name }}</button>
