@@ -2,8 +2,7 @@ env/
 
 __pycache__/
 
-data.py
-data.py.orig
+data.py*
 
 .coverage
 coverage.xml

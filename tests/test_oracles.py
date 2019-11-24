@@ -8,7 +8,7 @@ import hypothesis.strategies as st
 # 6d6
 @given(st.lists(st.integers(1, 6), 6, 6))
 def test_oracle(roll):
-    from oracles import Oracle, oracles
+    from app.oracles import Oracle, oracles
     for o in oracles:
         bp = Oracle(o['name'], roll)
         assert bp.oracle == o['name']
@@ -18,7 +18,7 @@ def test_oracle(roll):
 # 6dwhatever
 @given(st.lists(st.integers(1), 6, 6))
 def test_oracle_bad_dice(roll):
-    from oracles import Oracle, oracles
+    from app.oracles import Oracle, oracles
     for o in oracles:
         if any(map(lambda a: a > 6, roll)):
             with raises(ValueError):
@@ -32,7 +32,7 @@ def test_oracle_bad_dice(roll):
 # enumerate all rolls
 # 6d6
 def test_oracles():
-    from oracles import Oracle, oracles
+    from app.oracles import Oracle, oracles
     # there are 46,656 unique rolls of six six-sided dice
     rolls = [[d for d in map(lambda a: a + 1, list(p))]
              for p in product(range(6), repeat=6)]
@@ -52,7 +52,7 @@ def test_oracles():
 
 # 6d7
 def test_bad_rolls():
-    from oracles import Oracle, oracles
+    from app.oracles import Oracle, oracles
     # there are 117,649 unique rolls of six seven-sided dice,
     # and 70,993 of them contain at least one seven:
     # sum([7 in r for r in bad_rolls])

@@ -4,7 +4,7 @@ import importlib
 import os
 
 data_source = os.environ.get('ORACLES') or 'data'
-oracles = importlib.import_module(data_source).oracles
+oracles = importlib.import_module(data_source, package='app').oracles
 
 # check completeness of data
 # (we test that we can generate all possible seeds in test_oracles.py)

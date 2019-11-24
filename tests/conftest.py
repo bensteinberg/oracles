@@ -3,15 +3,21 @@ import pytest
 
 @pytest.fixture
 def app():
-    from server import app
+    from app.server import app
     return app
 
 
 @pytest.fixture
 def client():
-    from server import app
+    from app.server import app
     with app.test_client() as client:
         yield client
+
+
+@pytest.fixture
+def main():
+    from app.oracles import main
+    return main
 
 
 @pytest.fixture
