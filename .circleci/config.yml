@@ -35,7 +35,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install -r requirements.txt
+            pip install -r app/requirements.txt
 
       - save_cache:
           paths:
@@ -47,7 +47,7 @@ jobs:
           command: |
             . venv/bin/activate
             # exercise setup.py
-            pip install --editable .
+            pip install --editable app
             ORACLES=data_sample oracles
             # run test suite
             pytest --cov=./ --cov-report xml
