@@ -1,3 +1,7 @@
+window.addEventListener('popstate', function(event) {
+    location.reload();
+});
+
 function fetch_oracle(o) {
   fetch(typeof o === 'undefined' ? '/oracles/api/v1' : '/oracles/api/v1/' + o)
     .then((resp) => resp.json())
