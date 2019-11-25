@@ -5,7 +5,7 @@ import hypothesis.strategies as st
 
 # 6d6
 @given(st.lists(st.integers(1, 6), 6, 6)
-       .map(lambda ns: ' '.join([n for n in map(str, ns)])))
+       .map(lambda ns: ' '.join(list(map(str, ns)))))
 def test_rolls(roll):
     from app.oracles import main
 

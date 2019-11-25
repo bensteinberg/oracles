@@ -38,7 +38,7 @@ def api_random_roll(o):
 
 @bp.route('/api/v1/<o>/<d1>/<d2>/<d3>/<d4>/<d5>/<d6>')
 def api(o, d1, d2, d3, d4, d5, d6):
-    roll = [r for r in map(int, [d1, d2, d3, d4, d5, d6])]
+    roll = list(map(int, [d1, d2, d3, d4, d5, d6]))
     try:
         res = Oracle(o, roll)
         return jsonify({'oracle': res.oracle,
@@ -59,7 +59,7 @@ def api(o, d1, d2, d3, d4, d5, d6):
 
 @bp.route('/<o>/<d1>/<d2>/<d3>/<d4>/<d5>/<d6>')
 def oracle(o, d1, d2, d3, d4, d5, d6):
-    roll = [r for r in map(int, [d1, d2, d3, d4, d5, d6])]
+    roll = list(map(int, [d1, d2, d3, d4, d5, d6]))
     res = Oracle(o, roll)
     return render_template('oracle.html',
                            o=o,

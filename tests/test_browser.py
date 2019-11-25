@@ -52,7 +52,7 @@ def test_example(selenium, app, text, reversal):
     # in app/static/oracle.js.) This sequence is fragile; when n is 50
     # or 100, the latter assertion tends to fail; n of 10 mostly works.
     n = 10
-    texts = [t for t in map(random_text, repeat((rand, selenium), n))]
+    texts = list(map(random_text, repeat((rand, selenium), n)))
 
     # not necessarily true, but pretty likely -- how likely? with n == 10,
     # the assertion will fail once in 10 * 2 * 46,656 == 933,120 times,

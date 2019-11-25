@@ -34,7 +34,7 @@ def test_oracle_bad_dice(roll):
 def test_oracles():
     from app.oracles import Oracle, oracles
     # there are 46,656 unique rolls of six six-sided dice
-    rolls = [[d for d in map(lambda a: a + 1, list(p))]
+    rolls = [list(map(lambda a: a + 1, list(p)))
              for p in product(range(6), repeat=6)]
 
     os = []
@@ -56,7 +56,7 @@ def test_bad_rolls():
     # there are 117,649 unique rolls of six seven-sided dice,
     # and 70,993 of them contain at least one seven:
     # sum([7 in r for r in bad_rolls])
-    bad_rolls = [[d for d in map(lambda a: a + 1, list(p))]
+    bad_rolls = [list(map(lambda a: a + 1, list(p)))
                  for p in product(range(7), repeat=6)]
     os = []
     for o in oracles:

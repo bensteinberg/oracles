@@ -56,7 +56,7 @@ class Oracle:
             self.dice = [random.choice(range(0, 6)) + 1 for _ in range(0, 6)]
 
         # change dice rolls to zero-based for list indexing
-        c = [n for n in map(lambda a: a - 1, self.dice)]
+        c = list(map(lambda a: a - 1, self.dice))
         i = choices.index(self.oracle)
 
         self.trend = oracles[i]['trends'][c[0]]
