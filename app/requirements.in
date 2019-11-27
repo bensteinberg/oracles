@@ -10,3 +10,5 @@ hypothesis
 
 flask
 click
+
+nltk
