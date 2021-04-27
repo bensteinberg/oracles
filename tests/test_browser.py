@@ -7,11 +7,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-@pytest.mark.skipif(subprocess.run(['which', 'geckodriver']).returncode != 0,
-                    reason='No geckodriver')
-@pytest.mark.firefox_arguments('-headless')
+@pytest.mark.skipif(subprocess.run(['which', 'chromedriver']).returncode != 0,
+                    reason='No chromedriver')
 @pytest.mark.usefixtures('live_server')
-def test_example(selenium, app, text, reversal):
+def test_example(selenium, app, text, reversal, chrome_options):
     selenium.get('http://localhost:5000/oracles/angst/1/1/1/1/1/1')
 
     h1 = selenium.find_element_by_id('oracle')

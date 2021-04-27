@@ -35,7 +35,7 @@ You can also run the web application using Docker; running
 
 If you're hacking on this code, you can run the tests with `pytest`
 (including `flake8` to keep it clean). The browser integration tests
-will run if you have Firefox and geckodriver installed. If you add
+will run if you have Chrome and chromedriver installed. If you add
 Python packages, add them to `app/requirements.in` and run
 `pip-compile --generate-hashes app/requirements.in` to update
 `app/requirements.txt`.
