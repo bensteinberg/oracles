@@ -6,7 +6,7 @@ import hypothesis.strategies as st
 
 # property-based tests
 # 6d6
-@given(st.lists(st.integers(1, 6), 6, 6))
+@given(st.lists(st.integers(1, 6), min_size=6, max_size=6))
 def test_oracle(roll):
     from app.oracles import Oracle, oracles
     for o in oracles:
@@ -16,7 +16,7 @@ def test_oracle(roll):
 
 
 # 6dwhatever
-@given(st.lists(st.integers(1), 6, 6))
+@given(st.lists(st.integers(1), min_size=6, max_size=6))
 def test_oracle_bad_dice(roll):
     from app.oracles import Oracle, oracles
     for o in oracles:

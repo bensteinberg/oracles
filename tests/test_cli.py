@@ -4,7 +4,7 @@ import hypothesis.strategies as st
 
 
 # 6d6
-@given(st.lists(st.integers(1, 6), 6, 6)
+@given(st.lists(st.integers(1, 6), min_size=6, max_size=6)
        .map(lambda ns: ' '.join(list(map(str, ns)))))
 def test_rolls(roll):
     from app.oracles import main
@@ -63,7 +63,7 @@ def test_cli(text, main):
     # invalid dice roll
     result = runner.invoke(main, '-o angst -d 1 1 1 1 1 7')
     assert result.exit_code == 2
-    assert 'is not in the valid range of 1 to 6.' in result.output
+    assert 'is not in the range' in result.output
 
     # invalid oracle
     result = runner.invoke(main, '-o x')
