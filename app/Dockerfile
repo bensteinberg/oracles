@@ -12,6 +12,7 @@ COPY requirements.txt /app
 
 RUN python3 -m venv /env && \
     . /env/bin/activate && \
+    python3 -m pip install pip==20.3.4 && \
     pip install -r requirements.txt
 
 COPY ./ /app
