@@ -12,7 +12,7 @@ services:
 
   app:
     build: app
-    image: oracles:0.1.4
+    image: oracles:0.1.5
     environment:
       - FLASK_ENV=development
     ports:
