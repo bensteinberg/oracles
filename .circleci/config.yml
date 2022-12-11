@@ -26,20 +26,30 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "oracles/requirements.txt" }}
+            - v1-dependencies-{{ checksum "poetry.lock" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
       - run:
           name: install dependencies
           command: |
+            sudo apt-get install libatk1.0-0 \
+            libatk-bridge2.0-0 \
+            libcups2 \
+            libatspi2.0-0 \
+            libxdamage1 \
+            libgbm1 \
+            libxkbcommon0 \
+            libpango-1.0-0 \
+            libcairo2 \
+            libasound2
             poetry install
             poetry run playwright install
 
       - save_cache:
           paths:
-            - ./venv
-          key: v1-dependencies-{{ checksum "oracles/requirements.txt" }}
+            - /home/circleci/.cache/pypoetry/virtualenvs
+          key: v1-dependencies-{{ checksum "poetry.lock" }}
 
       - run:
           name: run tests
