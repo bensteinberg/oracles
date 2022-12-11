@@ -33,7 +33,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            sudo apt-get install libatk1.0-0 \
+            sudo apt-get update && sudo apt-get install libatk1.0-0 \
             libatk-bridge2.0-0 \
             libcups2 \
             libatspi2.0-0 \
