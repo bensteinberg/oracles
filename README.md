@@ -5,17 +5,15 @@ excellent game, [Microscope](http://www.lamemage.com/microscope/),
 using the Oracles mechanism from [Microscope
 Explorer](http://www.lamemage.com/microscope-explorer/).
 
-To set up the application, install `python3-venv` if necessary, then run
+To set up the application, [install
+Poetry](https://python-poetry.org/docs/#installation), then run
 
 ```
-python3 -m venv env
-source env/bin/activate
-pip install -r app/requirements.txt
+poetry install
 ```
 
-Copy `app/data_sample.py` to `app/data.py`, or create your own
-version. You can then run the application with `FLASK_ENV=development
-python app/server.py`. Visit it at
+Copy `oracles/data_sample.py` to `oracles/data.py`, or create your own
+version. You can then run the application with `FLASK_DEBUG=1 poetry run python oracles/server.py`. Visit it at
 [http://127.0.0.1:5000/oracles](http://127.0.0.1:5000/oracles), which
 will redirect you to a random roll of six six-sided dice for a random
 oracle. Adding an oracle (or substring) to the base URL, e.g.
@@ -24,21 +22,16 @@ will redirect you to a random roll for that oracle. The underlying API
 behaves the same way, and can be viewed at
 [http://127.0.0.1:5000/oracles/api/v1](http://127.0.0.1:5000/oracles/api/v1).
 
-You can also run a big picture generator on the command line; run `pip
-install --editable app` to install the script, then run `oracles` to
-generate a Big Picture. Try `oracles --help` for options.
+You can also run a big picture generator on the command line; run
+`ORACLES=oracles.data poetry run oracles` to generate a Big
+Picture. Try `oracles --help` for options.
 
 You can also run the web application using Docker; running
-`docker-compose up -d` will make it available at
-[http://127.0.0.1:8001/oracles](http://127.0.0.1:8001/oracles). Run
+`docker-compose up -d` will make it available at [http://127.0.0.1:8001/oracles](http://127.0.0.1:8001/oracles). Run
 `docker-compose down` to stop the containers.
 
-If you're hacking on this code, you can run the tests with `pytest`
-(including `flake8` to keep it clean). The browser integration tests
-will run if you have Chrome and chromedriver installed. If you add
-Python packages, add them to `app/requirements.in` and run
-`pip-compile --generate-hashes app/requirements.in` to update
-`app/requirements.txt`.
+If you're hacking on this code, you can run the tests with `poetry run
+pytest`. Use `poetry run flake8` to keep it clean. You may have to run `poetry run playwright install` to install the browsers for Playwright. Add Python packages with `poetry add <package>` or `poetry add --group dev <package>`, as appropriate. After changing non-dev packages, update the conventional requirements file with `poetry export -o oracles/requirements.txt`.
 
 (Lame Mage has an [online
 version](http://www.lamemage.com/oracles/) of the

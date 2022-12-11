@@ -6,7 +6,7 @@ from flask import (Flask,
                    url_for,
                    jsonify,
                    current_app)
-from oracles import Oracle, oracles
+from main import Oracle, oracles
 from random import choice
 
 bp = Blueprint('oracle', __name__,
@@ -90,7 +90,7 @@ def api_redirect(o, d):
     # to get the application to work both locally and behind SSL,
     # but moving to WSGI may make it unnecessary
     kd = dict(_external=True,
-              _scheme='https') if current_app.env == 'production' else {}
+              _scheme='https') if not current_app.debug else {}
     kwargs = {k: v for k, v in kd.items() if v is not None}
     return redirect(url_for('oracle.api',
                             o=o,

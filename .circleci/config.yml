@@ -36,19 +36,19 @@ jobs:
             python3 -m venv venv
             source venv/bin/activate
             python3 -m pip install pip==20.3.4
-            pip install -r app/requirements.txt
+            pip install -r oracles/requirements.txt
 
       - save_cache:
           paths:
             - ./venv
-          key: v1-dependencies-{{ checksum "app/requirements.txt" }}
+          key: v1-dependencies-{{ checksum "oracles/requirements.txt" }}
 
       - run:
           name: run tests
           command: |
             . venv/bin/activate
             # exercise setup.py
-            pip install --editable app
+            pip install --editable oracles
             ORACLES=data_sample oracles
             # run test suite
             pytest --cov=./ --cov-report xml

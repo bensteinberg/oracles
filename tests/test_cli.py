@@ -7,7 +7,7 @@ import hypothesis.strategies as st
 @given(st.lists(st.integers(1, 6), min_size=6, max_size=6)
        .map(lambda ns: ' '.join(list(map(str, ns)))))
 def test_rolls(roll):
-    from app.oracles import main
+    from oracles.main import main
 
     runner = CliRunner()
     # specify roll but not oracle

@@ -4,7 +4,7 @@ import importlib
 import os
 
 data_source = os.environ.get('ORACLES') or 'data'
-oracles = importlib.import_module(data_source, package='app').oracles
+oracles = importlib.import_module(data_source, package='oracles').oracles
 
 # check completeness of data
 # (we test that we can generate all possible seeds in test_oracles.py)
@@ -26,7 +26,7 @@ def validate_oracle(value):
         qualifier = "not a valid"
     else:
         qualifier = "an ambiguous"
-    return(None, qualifier)
+    return (None, qualifier)
 
 
 def validate_oracle_option(ctx, param, value):
