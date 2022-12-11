@@ -26,17 +26,16 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "app/requirements.txt" }}
+            - v1-dependencies-{{ checksum "oracles/requirements.txt" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
       - run:
           name: install dependencies
           command: |
-            python3 -m venv venv
-            source venv/bin/activate
-            python3 -m pip install pip==20.3.4
-            pip install -r oracles/requirements.txt
+            poetry self update
+            poetry install
+            poetry run playwright install
 
       - save_cache:
           paths:
@@ -46,9 +45,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            . venv/bin/activate
-            # run test suite
-            pytest --cov=./ --cov-report xml
+            poetry run pytest --cov=./ --cov-report xml
 
       - store_artifacts:
           path: test-reports
