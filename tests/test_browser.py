@@ -1,5 +1,12 @@
 import pytest
+import os
 from playwright.sync_api import Page, expect
+
+
+# https://stackoverflow.com/a/64504144/4074877
+if os.uname().sysname == 'Darwin':
+    import multiprocessing
+    multiprocessing.set_start_method("fork")
 
 
 def test_example(page: Page, live_server, text, reversal):
