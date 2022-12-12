@@ -89,9 +89,8 @@ def api_redirect(o, d):
     # this (and the setting of FLASK_ENV in pytest.ini) is necessary
     # to get the application to work both locally and behind SSL,
     # but moving to WSGI may make it unnecessary
-    kd = dict(_external=True,
-              _scheme='https') if not current_app.debug else {}
-    kwargs = {k: v for k, v in kd.items() if v is not None}
+    kwargs = dict(_external=True,
+                  _scheme='https') if not current_app.debug else {}
     return redirect(url_for('oracle.api',
                             o=o,
                             d1=d[0],
