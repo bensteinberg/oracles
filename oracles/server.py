@@ -86,8 +86,8 @@ def random_roll(o):
 
 
 def api_redirect(o, d):
-    # this (and the setting of FLASK_ENV in pytest.ini) is necessary
-    # to get the application to work both locally and behind SSL,
+    # this (and the setting of FLASK_DEBUG) is necessary to get
+    # the application to work both locally and behind SSL,
     # but moving to WSGI may make it unnecessary
     kwargs = dict(_external=True,
                   _scheme='https') if not current_app.debug else {}
