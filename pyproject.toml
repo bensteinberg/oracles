@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "oracles"
-version = "0.2.0"
+version = "0.2.1"
 description = ""
 authors = ["Ben Steinberg <ben@potswift.org>"]
 readme = "README.md"
