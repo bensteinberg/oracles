@@ -1,4 +1,3 @@
-import pytest
 import os
 from playwright.sync_api import Page, expect
 
@@ -30,7 +29,6 @@ def test_example(page: Page, live_server, text, reversal):
     expect(page.get_by_text(reversal)).not_to_be_visible()
 
 
-@pytest.mark.xfail(reason="unknown playwright issue")
 def test_random_and_back(page: Page, live_server):
     # The following section tests two things: first, that clicking the
     # random button produces different big pictures, and second, that
