@@ -8,7 +8,7 @@ if os.uname().sysname == 'Darwin':
     multiprocessing.set_start_method("fork")
 
 
-def test_example(page: Page, live_server, text, reversal):
+def test_example(page: Page, text, reversal):
     page.goto('http://localhost:5000/oracles/angst/1/1/1/1/1/1')
 
     expect(page).to_have_title('Oracles')
@@ -29,7 +29,7 @@ def test_example(page: Page, live_server, text, reversal):
     expect(page.get_by_text(reversal)).not_to_be_visible()
 
 
-def test_random_and_back(page: Page, live_server):
+def test_random_and_back(page: Page):
     # The following section tests two things: first, that clicking the
     # random button produces different big pictures, and second, that
     # clicking the browser's back button produces the same sequence of
@@ -60,7 +60,7 @@ def test_random_and_back(page: Page, live_server):
         page.go_back()
 
 
-def test_oracle_buttons(page: Page, live_server, text, reversal):
+def test_oracle_buttons(page: Page, text, reversal):
     buttons = page.get_by_role('button')
     for i in range(buttons.count()):
         oracle = buttons.nth(i).text_content()

@@ -29,7 +29,7 @@ You can also run the web application using Docker; running
 `docker-compose down` to stop the containers.
 
 If you're hacking on this code, you can run the tests with `poetry run
-pytest`. Use `poetry run flake8` to keep it clean. You may have to run `poetry run playwright install` to install the browsers for Playwright. Add Python packages with `poetry add <package>` or `poetry add --group dev <package>`, as appropriate. After changing non-dev packages, update the conventional requirements file with `poetry export -o oracles/requirements.txt`.
+pytest`. Use `poetry run flake8` to keep it clean. You may have to run `poetry run playwright install` to install the browsers for Playwright. For the browser tests to work, the application has to be running on localhost (TODO: get the live_server fixture set up properly). Add Python packages with `poetry add <package>` or `poetry add --group dev <package>`, as appropriate. After changing non-dev packages, update the conventional requirements file with `poetry export -o oracles/requirements.txt`.
 
 (Lame Mage has an [online
 version](http://www.lamemage.com/oracles/) of the
