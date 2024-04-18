@@ -10,7 +10,7 @@ services:
 
   app:
     build: oracles
-    image: oracles:0.2.9
+    image: oracles:0.3.0
     environment:
       - FLASK_DEBUG=1
     ports:
