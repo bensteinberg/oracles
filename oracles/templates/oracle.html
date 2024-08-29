@@ -8,7 +8,6 @@
     <link rel="shortcut icon" href="{{ url_for('.static', filename='favicon.ico') }}">
   </head>
   <body>
-    {% include "octocat.html" %}
     <div class="container">
       <div class="row">
         <div class="twelve columns" style="margin-top: 25%">
@@ -36,6 +35,7 @@
         </div>
       </div>
     </div>
+    {% include "octocat.html" %}
     <script type="text/javascript" src="{{ url_for('.static', filename = 'oracle.js') }}"></script>
   </body>
 </html>
