@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "oracles"
-version = "0.4.6"
+version = "0.4.7"
 description = ""
 authors = ["Ben Steinberg <ben@potswift.org>"]
 readme = "README.md"
@@ -39,3 +39,6 @@ pythonpath = [
 
 [tool.coverage.run]
 omit = ['oracles/data.py']
+
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.8"
